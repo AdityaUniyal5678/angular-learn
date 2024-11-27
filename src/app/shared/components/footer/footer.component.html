@@ -1,0 +1,46 @@
+<div class="footer">
+  <footer class="text-center text-white">
+    <section class="p-3">
+      <div class="align-items-center">
+        <span class="text-warning fs-5"
+          ><b class="fs-3"
+            >Get connected with me on social
+            networks:&nbsp;&nbsp;&nbsp;&nbsp;</b
+          >
+          <div>
+            <a class="text-white me-3" target="_blank">
+              <i class="fab fa-instagram pe-5">&nbsp; &nbsp;</i>
+            </a>
+            <a
+              href="https://www.linkedin.com/in/aditya-uniyal-497592272?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+              target="_blank"
+              class="text-white me-3"
+            >
+              <i class="fab fa-linkedin ps-5 pe-5">&nbsp;&nbsp;</i>
+            </a>
+            <a href="" target="_blank" class="text-white">
+              <i class="fab fa-github ps-5"></i>
+            </a></div
+        ></span>
+      </div>
+    </section>
+
+    <section class="">
+      <div class="container text-center text-md-start mt-5 mb-1">
+        <div class="row mt-3">
+          @for (item of KhaliArray; track item; let i=$index ) {
+          <div [ngClass]="item.bootstrap">
+            <h6 class="text-uppercase fw-bold">
+              {{ item.title }}
+            </h6>
+            <div [innerHTML]="item.content"></div>
+          </div>
+          }
+        </div>
+      </div>
+    </section>
+    <div class="text-center p-1" style="background-color: rgba(0, 0, 0, 0.5)">
+      &#169; {{ constants.currentYear }} {{ constants.footer.labels.copyright }}
+    </div>
+  </footer>
+</div>

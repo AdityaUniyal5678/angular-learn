@@ -1,0 +1,13 @@
+@import "../../../../mixins.scss";
+@import "../../.././../variables.scss";
+
+footer {
+  background-color: #1c2331;
+}
+.p3 {
+  background-color: #6351ce;
+}
+.custom-hr {
+  @include custom-hr;
+}
+

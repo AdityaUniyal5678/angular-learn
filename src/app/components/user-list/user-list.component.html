@@ -1,0 +1,77 @@
+<div class="col-lg-12 pt-2">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-header">
+        User List
+        <button
+          type="button"
+          id="deleteSelected"
+          class="btn btn-danger"
+          onclick="deleteSelectedUsers()"
+          disabled="true"
+        >
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </div>
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-striped" id="userListTable">
+            <thead>
+              <tr>
+                <th>
+                  <input
+                    type="checkbox"
+                    class="selectAllCheckbox"
+                    onchange="onCheckboxAllCheckedUnchecked(this)"
+                  />
+                </th>
+                <th>ID.NO.</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th class="text-center">Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="tbody">
+              @for(user of userList; track user){
+              <tr>
+                <td>
+                  <input type="checkbox" class="row-checkbox" />
+                </td>
+                <td>
+                  {{ user.id }}
+                </td>
+                <td>
+                  {{ user.first_name }}
+                </td>
+
+                <td>
+                  {{ user.last_name }}
+                </td>
+
+                <td>
+                  {{ user.email }}
+                </td>
+                <td>
+                  {{ user.age }}
+                </td>
+                <td>
+                  '<button
+                    (click)="deleteUsers(user.id)"
+                    class="btn btn-danger delete"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
