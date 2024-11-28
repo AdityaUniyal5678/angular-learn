@@ -1,14 +1,22 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, map, Observable, throwError } from 'rxjs';
+import { AuthService } from './auth.service';
+import { isNull } from 'util';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
   readonly API_BASE_URL = 'https://673c724f96b8dcd5f3fa13b9.mockapi.io/';
+  constructor(
+    private httpClient: HttpClient,
+    private authService: AuthService
+  ) {}
 
-  constructor(private httpClient: HttpClient) {}
+  isUserLoggedIn(): boolean {
+    return this.authService.getToken() ? true : false;
+  }
 
   /**
    * Creates new user in backend.

@@ -6,6 +6,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { RegisterComponent } from './components/register/register.component';
 import { UserListComponent } from './components/user-list/user-list.component';
 import { LoginComponent } from './components/login/login.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,7 @@ export const routes: Routes = [
   {
     path: 'portfolio',
     component: PortfolioComponent,
+    canActivate: [authGuard],
   },
   {
     path: 'contact',
