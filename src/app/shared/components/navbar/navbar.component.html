@@ -8,7 +8,21 @@
             >
           </li> -->
 
-        @for(item of menuItems; track item; ){
+        @for(item of menuItems; track item; let i=$index ){ @if (item?.id === 6
+        || item?.id === 7 ) { @if((authService.userToken$ | async) && item?.id
+        === 7){
+
+        <li class="nav-item">
+          <a
+            mouse
+            class="nav-link active mx-4"
+            aria-current="page"
+            (click)="logout()"
+            style="cursor: pointer"
+            ><b class="fs-2">{{ item?.item }} </b></a
+          >
+        </li>
+        } @else if(!(authService.userToken$ | async) && item?.id === 6) {
         <li class="nav-item">
           <a
             mouse
@@ -18,7 +32,17 @@
             ><b class="fs-2">{{ item?.item }} </b></a
           >
         </li>
-        }
+        }} @else {
+        <li class="nav-item">
+          <a
+            mouse
+            class="nav-link active mx-4"
+            aria-current="page"
+            [routerLink]="item.href"
+            ><b class="fs-2">{{ item?.item }} </b></a
+          >
+        </li>
+        }}
       </ul>
       <form class="d-flex" role="search">
         <input

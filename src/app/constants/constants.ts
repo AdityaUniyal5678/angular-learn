@@ -11,6 +11,7 @@ export const CONSTANTS = {
       contact: 'Contact Us',
       register: 'Register',
       login: 'Login',
+      logout: 'Logout',
     },
     buttons: {
       search: {

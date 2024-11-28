@@ -54,6 +54,11 @@ export class HeaderComponent implements OnInit {
         item: this.constants.header.labels.login,
         href: 'login',
       },
+      {
+        id: 7,
+        item: this.constants.header.labels.logout,
+        href: 'logout',
+      },
     ];
   }
 }

@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           next: (response) => {
             this.isSubmitted = false;
             console.log('response', response);
-            this.msg = response?.['msg'];
+            this.msg = response?.['message'];
           },
           error: (error: HttpErrorResponse) => {
             this.msg = error.message;

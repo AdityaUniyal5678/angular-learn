@@ -6,7 +6,7 @@ import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  readonly API_LOGIN_URL = 'https://angularscripts.in/';
+  readonly API_LOGIN_URL = 'http://192.168.1.6/school_backend/api/';
   userToken$ = new BehaviorSubject<string | null>('');
 
   constructor(private httpClient: HttpClient) {}
@@ -18,17 +18,24 @@ export class AuthService {
    */
   login(payload: any): Observable<any> {
     return this.httpClient
-      .post(`${this.API_LOGIN_URL}signIn.json`, payload)
+      .post(`${this.API_LOGIN_URL}users/signIn.json`, payload)
       .pipe(
         map((response: any) => {
           if (response?.['status']) {
-            localStorage.setItem('accessToken', response?.['token']);
-            this.userToken$.next(response?.['token']);
+            localStorage.setItem('accessToken', response?.['body']['token']);
+            this.userToken$.next(response?.['body']['token']);
           }
           return response;
         }),
         catchError((error: HttpErrorResponse) => throwError(() => error))
       );
+  }
+
+  /** Description placeholder */
+  logout(): void {
+    localStorage.removeItem('accessToken');
+    localStorage.clear();
+    this.userToken$.next('');
   }
 
   /**
@@ -37,7 +44,10 @@ export class AuthService {
    * @returns {(string | null)}
    */
   getToken(): string | null {
-    if (localStorage.getItem('accessToken')) {
+    if (
+      typeof localStorage !== 'undefined' &&
+      localStorage.getItem('accessToken')
+    ) {
       this.userToken$.next(
         localStorage.getItem('accessToken') as string | null
       );
